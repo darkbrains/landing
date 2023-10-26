@@ -1,0 +1,15 @@
+name: Auto PR Review and Approve By Bot
+
+on: [pull_request]
+
+jobs:
+  auto-review-approve:
+    runs-on: self-hosted
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: hmarr/auto-approve-action@v3
+        with:
+          github-token: ${{ secrets.TOKEN_GITHUB }}
+          pull-request-number: ${{ github.event.inputs.pullRequestNumber }}
+          review-message: "Your pull request has been automatically approved by the bot 🤖"
