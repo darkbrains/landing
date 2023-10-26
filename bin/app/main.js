@@ -62,7 +62,6 @@ app.get('/api/healthz', (req, res) => {
 
 app.get('/', (req, res) => {
   winston.info('Processing request at /');
-  winston.info('Processing redirect to /en');
   res.render('index');
 });
 
