@@ -57,7 +57,7 @@ jobs:
         run: |
           # docker buildx build --platform linux/amd64,linux/arm64 -t blackdocs/jermuk-city:${{ github.sha }} -f ./bin/Dockerfile ./bin --push
           docker image build -t blackdocs/landing:${{ github.sha }} -f ./bin/Dockerfile ./bin
-          docker image push --platform linux/amd64,linux/arm64
+          docker image push blackdocs/landing:${{ github.sha }}
 
       # - name: Push README to Docker Hub
       #   uses: christian-korneck/update-container-description-action@v1
