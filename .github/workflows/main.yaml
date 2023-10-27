@@ -178,7 +178,7 @@ jobs:
           CF_TOKEN: ${{ secrets.CF_TOKEN }}
           CF_ZONE_NAME: ${{ secrets.CF_ZONE_NAME }}
         run: |
-          curl -X POST 'https://api.cloudflare.com/client/v4/zones/"${CF_ZONE_NAME}"/purge_cache' \
-          -H 'Authorization: Bearer "${CF_TOKEN}"' \
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_NAME/purge_cache" \
+          -H "Authorization: Bearer $CF_TOKEN" \
           -H "Content-Type: application/json" \
           --data '{"purge_everything":true}'
