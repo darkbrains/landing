@@ -180,4 +180,4 @@ jobs:
         run: |
           curl -X POST -H "Authorization: Bearer ${CF_TOKEN}" \
           -H "Content-Type: application/json" \
-          --data '{"purge_everything":true}' "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_NAME}/purge_cache"
+          --data '{"purge_everything":true}' https://api.cloudflare.com/client/v4/zones/${CF_ZONE_NAME}/purge_cache
