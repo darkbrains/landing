@@ -174,7 +174,12 @@ jobs:
 
       - name: Clear CF Cache
         if: steps.wait.outputs.container_status == 'running'
-        uses: aorfanos/cloudflare-purge-action@v1.0.3
+        uses: actions/checkout@v4
         env:
           CF_TOKEN: ${{ secrets.CF_TOKEN }}
           CF_ZONE_NAME: ${{ secrets.CF_ZONE_NAME }}
+        run: |
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_NAME}/purge_cache" \
+          -H "Authorization: Bearer ${CF_TOKEN}" \
+          -H "Content-Type: application/json" \
+          --data '{"purge_everything":true}'
