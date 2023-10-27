@@ -171,3 +171,10 @@ jobs:
           token: ${{ secrets.repo_token }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+
+      - name: Clear CF Cache
+        if: steps.wait.outputs.container_status == 'running'
+        uses: aorfanos/cloudflare-purge-action@v1.0.3
+        env:
+          CF_TOKEN: ${{ secrets.CF_TOKEN }}
+          CF_ZONE_NAME: ${{ secrets.CF_ZONE_NAME }}
