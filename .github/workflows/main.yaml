@@ -175,6 +175,7 @@ jobs:
       - name: Purge cache
         if: steps.wait.outputs.container_status == 'running'
         uses: nathanvaughn/actions-cloudflare-purge@master
-        with:
-            cf_zone: ${{ secrets.CF_ZONE_NAME }}
-            cf_auth: ${{ secrets.CF_TOKEN }}
+        uses: jakejarvis/cloudflare-purge-action@master
+        env:
+          CLOUDFLARE_ZONE: ${{ secrets.CF_ZONE_NAME }}
+          CLOUDFLARE_TOKEN: ${{ secrets.CF_TOKEN }}        
