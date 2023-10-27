@@ -174,7 +174,6 @@ jobs:
 
       - name: Clear CF Cache
         if: steps.wait.outputs.container_status == 'running'
-        uses: actions/checkout@v4
         env:
           CF_TOKEN: ${{ secrets.CF_TOKEN }}
           CF_ZONE_NAME: ${{ secrets.CF_ZONE_NAME }}
