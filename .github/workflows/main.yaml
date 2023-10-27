@@ -172,13 +172,9 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
-      - name: Clear CF Cache
+      - name: Purge cache
         if: steps.wait.outputs.container_status == 'running'
-        env:
-          CF_TOKEN: ${{ secrets.CF_TOKEN }}
-          CF_ZONE_NAME: ${{ secrets.CF_ZONE_NAME }}
-        run: |
-          curl -X POST https://api.cloudflare.com/client/v4/zones/${CF_ZONE_NAME}/purge_cache \
-          -H "Authorization: Bearer ${CF_TOKEN}" \
-          -H "Content-Type: application/json" \
-          --data '{"purge_everything":true}' 
+        uses: nathanvaughn/actions-cloudflare-purge@master
+        with:
+            cf_zone: ${{ secrets.CF_ZONE_NAME }}
+            cf_auth: ${{ secrets.CF_TOKEN }}
