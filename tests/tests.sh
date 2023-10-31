@@ -4,7 +4,7 @@
 # Start blackdocs-landing Docker container
 docker network create actions --driver bridge
 
-docker run --network actions --name blackdocs-landing-tests \
+docker run --network actions --name blackdocs-landing-tests -p 8887:8887 \
   blackdocs/landing:local &
 
 sleep 15
