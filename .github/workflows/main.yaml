@@ -36,7 +36,7 @@ jobs:
   blackdocs-landing-ci:
     if: github.event.pull_request.merged == true
     needs: landing-endpoints-tests-prod
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
