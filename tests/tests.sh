@@ -7,7 +7,7 @@ docker network create actions --driver bridge
 docker run --network actions --name blackdocs-landing-tests \
   blackdocs/landing:local &
 
-sleep 5
+sleep 15
 
 
 # Test /api/healthz endpoint
