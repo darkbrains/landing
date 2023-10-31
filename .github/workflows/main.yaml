@@ -7,7 +7,7 @@ on:
 jobs:
   landing-endpoints-tests-prod:
     if: github.event.pull_request.merged == true
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -83,22 +83,9 @@ jobs:
           git_user_signingkey: true
           git_commit_gpgsign: true
 
-      # - name: Delever to K8S
-      #   run: |
-      #     sed -i "s|docker.io/blackdocs/jermuk-city:[^ ]*|docker.io/blackdocs/jermuk-city:${{ github.sha }}|" ./saas/jermuk-city/values.yaml
-      #   working-directory: ./
-
-      # - name: Sign commit and push changes
-      #   run: |
-      #     git add .
-      #     git config --local user.email "blackdocscloud@gmail.com"
-      #     git config --local user.name "blackdocs-bot"
-      #     git commit -m "Update image tag to ${GITHUB_SHA}"
-      #     git push
-
-      - name: Delever to Docker Compose
+      - name: Delever to K8S
         run: |
-          sed -i "s|docker.io/blackdocs/landing:[^ ]*|docker.io/blackdocs/landing:${{ github.sha }}|" ./docker-live/platform/blackdocs-landing.yaml
+          sed -i "s|docker.io/blackdocs/landing:[^ ]*|docker.io/blackdocs/landing:${{ github.sha }}|" ./saas/blackdocs-cloud/values.yaml
         working-directory: ./
 
       - name: Sign commit and push changes
@@ -106,8 +93,21 @@ jobs:
           git add .
           git config --local user.email "blackdocscloud@gmail.com"
           git config --local user.name "blackdocs-bot"
-          git commit -m "Update image tag for blackdocs-landing"
+          git commit -m "Update image tag to ${GITHUB_SHA}"
           git push
+
+      # - name: Delever to Docker Compose
+      #   run: |
+      #     sed -i "s|docker.io/blackdocs/landing:[^ ]*|docker.io/blackdocs/landing:${{ github.sha }}|" ./docker-live/platform/blackdocs-landing.yaml
+      #   working-directory: ./
+
+      # - name: Sign commit and push changes
+      #   run: |
+      #     git add .
+      #     git config --local user.email "blackdocscloud@gmail.com"
+      #     git config --local user.name "blackdocs-bot"
+      #     git commit -m "Update image tag for blackdocs-landing"
+      #     git push
 
       - name: Report Status
         if: always()
@@ -122,58 +122,58 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
-      - name: Docker Compose CD
-        working-directory: ./
-        run: |
-          docker compose -f ./docker-live/platform/blackdocs-landing.yaml up -d
+      # - name: Docker Compose CD
+      #   working-directory: ./
+      #   run: |
+      #     docker compose -f ./docker-live/platform/blackdocs-landing.yaml up -d
 
-      - name: Wait for Container to Start
-        id: wait
-        run: |
-          for i in {1..10}; do
-            status=$(docker ps -f "ancestor=blackdocs/landing:${{ github.sha }}" --format "{{.Status}}")
-            if [[ "$status" =~ .*Up.* ]]; then
-              echo "Container is running"
-              echo "::set-output name=container_status::running"
-              exit 0
-            else
-              echo "Container is not running or restarting"
-              echo "::set-output name=container_status::not_running"
-              exit 1
-            fi
-            sleep 1
-          done
+      # - name: Wait for Container to Start
+      #   id: wait
+      #   run: |
+      #     for i in {1..10}; do
+      #       status=$(docker ps -f "ancestor=blackdocs/landing:${{ github.sha }}" --format "{{.Status}}")
+      #       if [[ "$status" =~ .*Up.* ]]; then
+      #         echo "Container is running"
+      #         echo "::set-output name=container_status::running"
+      #         exit 0
+      #       else
+      #         echo "Container is not running or restarting"
+      #         echo "::set-output name=container_status::not_running"
+      #         exit 1
+      #       fi
+      #       sleep 1
+      #     done
 
-      - name: Report Status
-        if: steps.wait.outputs.container_status == 'not_running'
-        uses: ravsamhq/notify-slack-action@v2
-        with:
-          status: ${{ job.status }}
-          notify_when: "failure"
-          footer: "<{run_url}|View Run>"
-          notification_title: "GitHub CD"
-          message_format: |
-            {emoji} *blackdocs-landing* Sync faild. Container not ready
-          token: ${{ secrets.repo_token }}
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+      # - name: Report Status
+      #   if: steps.wait.outputs.container_status == 'not_running'
+      #   uses: ravsamhq/notify-slack-action@v2
+      #   with:
+      #     status: ${{ job.status }}
+      #     notify_when: "failure"
+      #     footer: "<{run_url}|View Run>"
+      #     notification_title: "GitHub CD"
+      #     message_format: |
+      #       {emoji} *blackdocs-landing* Sync faild. Container not ready
+      #     token: ${{ secrets.repo_token }}
+      #   env:
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
-      - name: Report Status
-        if: steps.wait.outputs.container_status == 'running'
-        uses: ravsamhq/notify-slack-action@v2
-        with:
-          status: ${{ job.status }}
-          notify_when: "success"
-          footer: "<{run_url}|View Run>"
-          notification_title: "GitHub CD"
-          message_format: |
-            {emoji} *blackdocs-landing* Status Synced
-          token: ${{ secrets.repo_token }}
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+      # - name: Report Status
+      #   if: steps.wait.outputs.container_status == 'running'
+      #   uses: ravsamhq/notify-slack-action@v2
+      #   with:
+      #     status: ${{ job.status }}
+      #     notify_when: "success"
+      #     footer: "<{run_url}|View Run>"
+      #     notification_title: "GitHub CD"
+      #     message_format: |
+      #       {emoji} *blackdocs-landing* Status Synced
+      #     token: ${{ secrets.repo_token }}
+      #   env:
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
       - name: Purge cache
-        if: steps.wait.outputs.container_status == 'running'
+        # if: steps.wait.outputs.container_status == 'running'
         uses: jakejarvis/cloudflare-purge-action@master
         env:
           CLOUDFLARE_ZONE: ${{ secrets.CF_ZONE_NAME }}
