@@ -85,7 +85,7 @@ jobs:
 
       - name: Delever to K8S
         run: |
-          sed -i "s|docker.io/darkbrain/landing:[^ ]*|docker.io/darkbrain/landing:${{ github.sha }}|" ./saas/blackdocs-cloud/values.yaml
+          sed -i "s|docker.io/darkbrains/landing:[^ ]*|docker.io/darkbrains/landing:${{ github.sha }}|" ./saas/blackdocs-cloud/values.yaml
         working-directory: ./
 
       - name: Sign commit and push changes
