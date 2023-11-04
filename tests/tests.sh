@@ -1,11 +1,11 @@
 #!/bin/bash
 
 
-# Start darkbrain-landing Docker container
+# Start darkbrains-landing Docker container
 docker network create actions --driver bridge
 
-docker run --network actions --name darkbrain-landing-tests -p 8887:8887 \
-  docker.io/darkbrain/landing:local &
+docker run --network actions --name darkbrains-landing-tests -p 8887:8887 \
+  darkbrains/landing:local &
 
 sleep 15
 
@@ -44,8 +44,8 @@ sleep 5
 
 
 # Stop and remove the Docker containers
-docker stop darkbrain-landing-tests
-docker rm darkbrain-landing-tests
+docker stop darkbrains-landing-tests
+docker rm darkbrains-landing-tests
 
 
 # Status Report
