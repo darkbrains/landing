@@ -5,7 +5,7 @@
 docker network create actions --driver bridge
 
 docker run --network actions --name darkbrain-landing-tests -p 8887:8887 \
-  darkbrain/landing:local &
+  docker.io/darkbrain/landing:local &
 
 sleep 15
 
