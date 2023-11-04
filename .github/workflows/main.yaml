@@ -92,8 +92,8 @@ jobs:
         run: |
           git add .
           git config --local user.email "blackdocscloud@gmail.com"
-          git config --local user.name "blackdocs-bot"
-          git commit -m "Update image tag for blackdocs-landing"
+          git config --local user.name "darkbrains-bot"
+          git commit -m "Update image tag for landing"
           git push
 
       # - name: Delever to Docker Compose
