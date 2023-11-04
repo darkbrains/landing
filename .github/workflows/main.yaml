@@ -1,4 +1,4 @@
-name: Build the Blackdocs landing app, test and deploy
+name: Build the Landing app, test and deploy
 on:
   pull_request:
     branches:
@@ -14,7 +14,7 @@ jobs:
 
       - name: Build prod test image
         run: |
-          docker build -t blackdocs/landing:local -f ./bin/Dockerfile ./bin
+          docker build -t darkbrains/landing:local -f ./bin/Dockerfile ./bin
 
       - name: Run Tests Prod
         run: |
@@ -33,7 +33,7 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
-  blackdocs-landing-ci:
+  landing-ci:
     if: github.event.pull_request.merged == true
     needs: landing-endpoints-tests-prod
     runs-on: ubuntu-latest
@@ -55,9 +55,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push
         run: |
-          # docker buildx build --platform linux/amd64,linux/arm64 -t blackdocs/jermuk-city:${{ github.sha }} -f ./bin/Dockerfile ./bin --push
-          docker image build -t blackdocs/landing:${{ github.sha }} -f ./bin/Dockerfile ./bin
-          docker image push blackdocs/landing:${{ github.sha }}
+          # docker buildx build --platform linux/amd64,linux/arm64 -t darkbrains/jermuk-city:${{ github.sha }} -f ./bin/Dockerfile ./bin --push
+          docker image build -t darkbrains/landing:${{ github.sha }} -f ./bin/Dockerfile ./bin
+          docker image push darkbrains/landing:${{ github.sha }}
 
       # - name: Push README to Docker Hub
       #   uses: christian-korneck/update-container-description-action@v1
@@ -72,7 +72,7 @@ jobs:
       - name: Checkout target repository
         uses: actions/checkout@v4
         with:
-          repository: Blackdocs-Cloud/live-environments
+          repository: Dark-brains/live-environments
           ref: main
           token: ${{ secrets.TOKEN_GITHUB }}
 
@@ -85,7 +85,7 @@ jobs:
 
       - name: Delever to K8S
         run: |
-          sed -i "s|docker.io/blackdocs/landing:[^ ]*|docker.io/blackdocs/landing:${{ github.sha }}|" ./saas/blackdocs-cloud/values.yaml
+          sed -i "s|docker.io/darkbrain/landing:[^ ]*|docker.io/darkbrain/landing:${{ github.sha }}|" ./saas/blackdocs-cloud/values.yaml
         working-directory: ./
 
       - name: Sign commit and push changes
@@ -116,7 +116,7 @@ jobs:
           status: ${{ job.status }}
           notify_when: "success,failure"
           footer: "<{run_url}|View Run>"
-          notification_title: "blackdocs-landing CI"
+          notification_title: "landing CI"
           message_format: "{emoji} *{workflow}* {status_message} on <{commit_url}|{commit_sha}>"
           token: ${{ secrets.repo_token }}
         env:
