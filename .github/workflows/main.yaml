@@ -172,9 +172,9 @@ jobs:
       #   env:
       #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
-      - name: Purge cache
-        # if: steps.wait.outputs.container_status == 'running'
-        uses: jakejarvis/cloudflare-purge-action@master
-        env:
-          CLOUDFLARE_ZONE: ${{ secrets.CF_ZONE_NAME }}
-          CLOUDFLARE_TOKEN: ${{ secrets.CF_TOKEN }}        
+      # - name: Purge cache
+      #   # if: steps.wait.outputs.container_status == 'running'
+      #   uses: jakejarvis/cloudflare-purge-action@master
+      #   env:
+      #     CLOUDFLARE_ZONE: ${{ secrets.CF_ZONE_NAME }}
+      #     CLOUDFLARE_TOKEN: ${{ secrets.CF_TOKEN }}        
