@@ -1,4 +1,4 @@
-name: Blackdocs landing Endpoints Tests
+name: Landing Endpoints Tests
 on:
   push:
     branches-ignore:
@@ -13,7 +13,7 @@ jobs:
 
       - name: Build test image
         run: |
-          docker build -t blackdocs/landing:local -f ./bin/Dockerfile ./bin
+          docker build -t darkbrains/landing:local -f ./bin/Dockerfile ./bin
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -33,7 +33,7 @@ jobs:
           status: ${{ job.status }}
           notify_when: "success,failure"
           footer: "<{run_url}|View Run>"
-          notification_title: "blackocs-landing-endpoints-tests"
+          notification_title: "landing-endpoints-tests"
           message_format: "{emoji} *{workflow}* {status_message} on <{commit_url}|{commit_sha}>"
           token: ${{ secrets.repo_token }}
         env:

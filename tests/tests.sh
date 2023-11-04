@@ -1,11 +1,11 @@
 #!/bin/bash
 
 
-# Start blackdocs-landing Docker container
+# Start darkbrains-landing Docker container
 docker network create actions --driver bridge
 
-docker run --network actions --name blackdocs-landing-tests -p 8887:8887 \
-  blackdocs/landing:local &
+docker run --network actions --name darkbrains-landing-tests -p 8887:8887 \
+  darkbrains/landing:local &
 
 sleep 15
 
@@ -44,8 +44,8 @@ sleep 5
 
 
 # Stop and remove the Docker containers
-docker stop blackdocs-landing-tests
-docker rm blackdocs-landing-tests
+docker stop darkbrains-landing-tests
+docker rm darkbrains-landing-tests
 
 
 # Status Report
