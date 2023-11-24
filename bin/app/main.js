@@ -8,7 +8,9 @@ const client = require('prom-client');
 const metricsApp = express();
 const collectDefaultMetrics = client.collectDefaultMetrics;
 
+
 collectDefaultMetrics({ timeout: 5000 });
+
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
@@ -97,6 +99,7 @@ metricsApp.use((req, res) => {
 app.listen(PORT, () => {
   winston.info(`Server started: http://${HOST}:${PORT}`);
 });
+
 
 metricsApp.listen(METRICS_PORT, () => {
   winston.info(`Metrics server listening on port http://${HOST}:${METRICS_PORT}`);
