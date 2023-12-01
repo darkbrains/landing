@@ -2,7 +2,7 @@
 
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-blue)](https://github.com/Dark-brains/blackdocs-cloud)
 [![GitHub](https://img.shields.io/badge/GitHub-Releases-green)](https://github.com/Dark-brains/blackdocs-cloud/releases)
-![GitHub Workflow Status](https://github.com/Dark-brains/blackdocs-cloud/actions/workflows/test.yaml/badge.svg?branch=dev)
+![GitHub Workflow Status](https://github.com/Darkbrains/blackdocs-cloud/actions/workflows/test.yaml/badge.svg?branch=dev)
 
 ## Project Description
 
