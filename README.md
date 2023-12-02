@@ -31,13 +31,13 @@ Comming soon.
 ### main.js Files
 
 - `main.js`: This is the main server script (`main.js`) responsible for handling HTTP requests and defining route handlers. It uses the Express.js framework to set up the server, handle routing, and serve dynamic content using EJS templates. Key features include:
-  
+
   - Middleware: It sets up middleware for logging requests using the Winston library.
-  
+
   - Error Handling: It includes error handling middleware to log and handle errors gracefully.
-  
+
   - Routing: It defines various routes for rendering webpages in different languages and redirects for specific URLs.
-  
+
   - Logging: It configures the Winston logger to log request information.
 
 ### Views (EJS Templates)

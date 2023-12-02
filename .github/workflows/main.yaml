@@ -177,4 +177,4 @@ jobs:
       #   uses: jakejarvis/cloudflare-purge-action@master
       #   env:
       #     CLOUDFLARE_ZONE: ${{ secrets.CF_ZONE_NAME }}
-      #     CLOUDFLARE_TOKEN: ${{ secrets.CF_TOKEN }}        
+      #     CLOUDFLARE_TOKEN: ${{ secrets.CF_TOKEN }}
