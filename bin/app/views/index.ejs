@@ -4,6 +4,7 @@
     <title>Darkbrains</title>
     <link rel="stylesheet" class="text/css" href="/static/styles.css"/>
     <link rel="shortcut icon" type="image/x-icon" href="/static/brain2.jpg"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <header>
@@ -14,7 +15,7 @@
 		</a>
         <nav id="header-right">
             <ul>
-                <li><a href="https://github.com/Dark-brains" target="_blank">GitHub Repositories</a></li>
+                <li><a href="https://github.com/Darkbrains" target="_blank">GitHub Repositories</a></li>
                 <li><a href="#">Helm Charts</a></li>
                 <li><a href="https://hub.docker.com/u/darkbrains" target="_blank">Docker Images</a></li>
             </ul>
@@ -26,6 +27,18 @@
         </div>
         <div id="diagonal-slice"></div> 
     </div>
+    <div id="menuButton" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div id="menuOptions" style="display: none;">
+        <ul>
+            <li><a href="https://github.com/Darkbrains" target="_blank">GitHub Repositories</a></li>
+            <li><a href="#">Helm Charts</a></li>
+            <li><a href="https://hub.docker.com/u/darkbrains" target="_blank">Docker Images</a></li>
+        </ul>
+    </div>    
     <main>
         <article>
         </article>
@@ -125,5 +138,19 @@
     <footer>
         © 2023 Darkbrains. All rights reserved.
     </footer>
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menuOptions");
+            var button = document.getElementById("menuButton");
+            
+            if (menu.style.display === "none" || menu.style.display === "") {
+                menu.style.display = "flex";
+                button.classList.add("close");
+            } else {
+                menu.style.display = "none";
+                button.classList.remove("close");
+            }
+        }
+    </script>    
 </body>
 </html>
