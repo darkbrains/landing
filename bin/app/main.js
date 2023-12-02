@@ -38,7 +38,7 @@ const customFormat = winston.format.combine(
   })
 );
 
- 
+
 winston.configure({
     level: 'debug',
     format: customFormat,
@@ -46,7 +46,7 @@ winston.configure({
         new winston.transports.Console(),
     ],
 });
-  
+
 
 app.use((err, req, res, next) => {
     winston.error({
