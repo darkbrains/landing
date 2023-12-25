@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Darkbrains</title>
+    <link rel="stylesheet" class="text/css" href="/static/styles.css"/>
+    <link rel="shortcut icon" type="image/x-icon" href="/static/icon.webp"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+		<a href="#">
+        <div id="header-left-db">
+            Darkbrains
+        </div>
+		</a>
+        <nav id="header-right">
+            <ul>
+                <li><a href="https://github.com/Darkbrains" target="_blank">GitHub Repositories</a></li>
+                <li><a href="#">Helm Charts</a></li>
+                <li><a href="https://hub.docker.com/u/darkbrains" target="_blank">Docker Images</a></li>
+                <li><a href="https://app.darkbrains.com/login" target="_blank">LOGIN</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="welcome-section">
+        <div id="welcome-section-text">
+            Welcome to Darkbrains
+        </div>
+        <div id="diagonal-slice"></div>
+    </div>
+    <div id="menuButton" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div id="menuOptions" style="display: none;">
+        <ul>
+            <li><a href="https://github.com/Darkbrains" target="_blank">GitHub Repositories</a></li>
+            <li><a href="#">Helm Charts</a></li>
+            <li><a href="https://hub.docker.com/u/darkbrains" target="_blank">Docker Images</a></li>
+            <li><a href="https://app.darkbrains.com/login" target="_blank">LOGIN</a></li>
+        </ul>
+    </div>
+    <main>
+        <article>
+        </article>
+        <a href="https://opensource.com/resources/what-open-source" target="_blank">
+        <section class="side-section">
+            <div id="side-section-main-1">
+                <p>
+                    Open Source
+                </p>
+                <p>
+                    01
+                </p>
+                <div id="side-section-main-1-text">
+                <p>
+                    Darkbrains is an open-source hub where you can explore, use, and contribute to our projects. We love open source and invite you to join us in this movement.
+                </p>
+                </div>
+                <div id="side-section-main-1-read-more-button">
+                    <p>
+                    READ MORE
+                    </p>
+                </div>
+            </div>
+        </section>
+        </a>
+        <a href="https://github.com/Dark-brains" target="_blank">
+        <section class="side-section">
+            <div id="side-section-main-2">
+                <p>
+                    Collaboration Hub
+                </p>
+                <p>
+                    02
+                </p>
+                <div id="side-section-main-2-text">
+                    <p>
+                        Darkbrains is not just about code - we're also about knowledge sharing. We share ideas, insights, and knowledge to help you grow as a developer. Join our community and learn from the best.
+                    </p>
+                </div>
+                <div id="side-section-main-2-read-more-button">
+                    <p>
+                    READ MORE
+                    </p>
+                </div>
+            </div>
+        </section>
+        </a>
+        <a href="#">
+        <!-- <a href="#" target="_blank"> -->
+        <section class="side-section">
+            <div id="side-section-main-3">
+                <p>
+                    Tech Talks
+                </p>
+                <p>
+                    03
+                </p>
+                <div id="side-section-main-3-text">
+                    <p>
+                        Join Darkbrains' tech talks and get access to the latest trends, insights and best practices in the tech industry. We bring together the brightest minds in tech to share their knowledge and expertise with you.
+                    </p>
+                </div>
+                <div id="side-section-main-3-read-more-button">
+                    <p>
+                    READ MORE
+                    </p>
+                </div>
+            </div>
+        </section>
+        </a>
+    </main>
+    <foreign>
+        <section class="side-secondary-section">
+            <div id="side-secondary-section-main-1">
+                <p>
+                    Join our open-source community
+                </p>
+                <div id="side-secondary-section-main-1-text">
+                <p>
+                    Darkbrains is an open-source platform where collaboration and innovation thrive. Our community is built on the principles of open-source development, where everyone is welcome to contribute, and no idea is too small. Explore our projects, use our repositories, and join our community today.
+                </p>
+                </div>
+                <a href="https://app.darkbrains.com/login" target="_blank">
+                <div id="side-secondary-section-main-1-read-more-button">
+                    <p>
+                    LOGIN
+                    </p>
+                </div>
+                </a>
+            </div>
+        </section>
+        <section class="side-secondary-section">
+            <div id="side-secondary-section-main-2">
+            </div>
+        </section>
+    </foreign>
+    <footer>
+        © 2023 Darkbrains. All rights reserved.
+    </footer>
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menuOptions");
+            var button = document.getElementById("menuButton");
+            if (menu.style.display === "none" || menu.style.display === "") {
+                menu.style.display = "flex";
+                button.classList.add("close");
+            } else {
+                menu.style.display = "none";
+                button.classList.remove("close");
+            }
+        }
+    </script>
+</body>
+</html>

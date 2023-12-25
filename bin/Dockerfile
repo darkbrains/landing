@@ -1,11 +1,11 @@
-FROM node:latest
+FROM golang:1.21.5
 
 WORKDIR /app
 
-COPY /app/ .
+COPY . .
 
-RUN yarn install
+RUN go build main.go
 
-CMD ["yarn", "main"]
+CMD ["./main"]
 
 EXPOSE 8887
